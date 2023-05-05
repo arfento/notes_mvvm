@@ -27,14 +27,17 @@ class HomeDetailComponent extends StatelessWidget {
             children: <Widget>[
               CustomText.h4(
                 context,
-                "#" + visualNoteModel.noteId,
+                '#' + visualNoteModel.noteId,
                 color: AppColors.secondaryColor,
                 weight: FontStyles.fontWeightBold,
                 overflow: TextOverflow.ellipsis,
               ),
               CustomText.h5(
                 context,
-                DateParser.instance.convertEpochToLocal(visualNoteModel.date),
+                DateParser.instance.convertEpochToLocal(
+                  visualNoteModel.date,
+                ),
+                overflow: TextOverflow.ellipsis,
               ),
               SizedBox(
                 height: Sizes.vMarginSmallest,

@@ -27,7 +27,7 @@ class AppBarWithIconComponent extends StatelessWidget {
         SizedBox(
           width: Sizes.hMarginComment,
         ),
-        CustomText.h2(
+        CustomText.h6(
           context,
           title,
           weight: FontStyles.fontWeightSemiBold,

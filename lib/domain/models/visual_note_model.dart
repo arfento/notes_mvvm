@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 class VisualNoteModel {
   final String noteId;
   final int date;
@@ -35,5 +36,10 @@ class VisualNoteModel {
       image: map['image'] as String,
       status: map['status'] as String,
     );
+  }
+
+  @override
+  String toString() {
+    return 'VisualNoteModel(noteId: $noteId, date: $date, title: $title, description: $description, image: $image, status: $status)';
   }
 }

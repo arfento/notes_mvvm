@@ -9,14 +9,14 @@ import 'package:notes_mvvm/presentation/widgets/home/edit_button_component.dart'
 import 'package:notes_mvvm/presentation/widgets/home/home_detail_component.dart';
 
 class HomeListItemComponent extends StatelessWidget {
-  const HomeListItemComponent({
-    Key? key,
-    required this.visualNoteModel,
-    required this.isSelectedNote,
-  }) : super(key: key);
-
   final VisualNoteModel visualNoteModel;
   final bool isSelectedNote;
+
+  const HomeListItemComponent({
+    required this.visualNoteModel,
+    required this.isSelectedNote,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,13 +38,15 @@ class HomeListItemComponent extends StatelessWidget {
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
+          children: [
             Expanded(
-              child: HomeDetailComponent(visualNoteModel: visualNoteModel),
+              child: HomeDetailComponent(
+                visualNoteModel: visualNoteModel,
+              ),
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
-              children: <Widget>[
+              children: [
                 EditButtonComponent(
                   visualNoteModel: visualNoteModel,
                 ),
@@ -67,7 +69,7 @@ class HomeListItemComponent extends StatelessWidget {
                   ),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),

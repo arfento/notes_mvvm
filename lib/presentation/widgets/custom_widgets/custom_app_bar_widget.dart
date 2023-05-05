@@ -1,11 +1,11 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:notes_mvvm/config/router/navigation_service.dart';
 import 'package:notes_mvvm/core/styles/font_styles.dart';
 import 'package:notes_mvvm/core/styles/sizes.dart';
 import 'package:notes_mvvm/presentation/widgets/custom_widgets/custom_text.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CustomAppBar extends PreferredSize {
   CustomAppBar(

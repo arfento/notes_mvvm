@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notes_mvvm/core/localization/app_localization.dart';
 import 'package:notes_mvvm/core/styles/app_colors.dart';
+import 'package:notes_mvvm/core/styles/font_styles.dart';
 import 'package:notes_mvvm/core/styles/sizes.dart';
 import 'package:notes_mvvm/popup_page.dart';
 import 'package:notes_mvvm/presentation/viewmodels/home/home_viewmodel.dart';
@@ -28,10 +29,12 @@ class _HomePageState extends State<HomePage> {
       scaffoldKey: scaffoldKey,
       appBarWithMenu: true,
       appbarItems: [
-        CustomText.h2(
+        CustomText.h6(
           context,
           tr('appName'),
           color: AppColors.primaryColor,
+          weight: FontStyles.fontWeightBlack,
+          overflow: TextOverflow.ellipsis,
         ),
       ],
       drawer: MainDrawer(
@@ -85,8 +88,9 @@ class _HomePageState extends State<HomePage> {
                                           : null,
                                       onLongPress: () {
                                         homeVm.toggleNoteSelection(
-                                            noteId:
-                                                homeVm.notesList[index].noteId);
+                                          noteId:
+                                              homeVm.notesList[index].noteId,
+                                        );
                                       },
                                       child: HomeListItemComponent(
                                         visualNoteModel:

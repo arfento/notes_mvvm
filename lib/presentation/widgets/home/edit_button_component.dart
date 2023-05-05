@@ -25,6 +25,7 @@ class EditButtonComponent extends StatelessWidget {
       buttonColor: AppColors.secondaryColor,
       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
       onPressed: () {
+        print("visual note model : $visualNoteModel");
         NavigationService.navigateTo(
           navigationMethod: NavigationMethod.push,
           isNamed: true,
