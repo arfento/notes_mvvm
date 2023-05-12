@@ -53,8 +53,8 @@ class CustomButton extends StatelessWidget {
               ),
             ),
         elevation: elevation ?? 0,
-        primary: buttonColor,
-        onPrimary: splashColor,
+        backgroundColor: buttonColor,
+        foregroundColor: splashColor,
         shadowColor: shadowColor,
         padding: padding ??
             EdgeInsets.zero, //Not necessary if you added height and width.

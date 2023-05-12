@@ -27,7 +27,7 @@ class HomeDetailComponent extends StatelessWidget {
             children: <Widget>[
               CustomText.h4(
                 context,
-                '#' + visualNoteModel.noteId,
+                '#${visualNoteModel.noteId}',
                 color: AppColors.secondaryColor,
                 weight: FontStyles.fontWeightBold,
                 overflow: TextOverflow.ellipsis,
@@ -51,7 +51,7 @@ class HomeDetailComponent extends StatelessWidget {
               ),
               CustomText.h6(
                 context,
-                visualNoteModel.description + '.',
+                '${visualNoteModel.description}.',
                 weight: FontStyles.fontWeightBold,
               ),
               SizedBox(

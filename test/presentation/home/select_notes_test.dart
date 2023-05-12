@@ -1,10 +1,8 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:notes_mvvm/data/datasources/db/database_helpers.dart';
-import 'package:notes_mvvm/presentation/viewmodels/home/home_viewmodel.dart';
 import 'package:notes_mvvm/presentation/widgets/custom_widgets/custom_text.dart';
 import 'package:notes_mvvm/presentation/widgets/home/home_list_item_component.dart';
 import 'package:notes_mvvm/presentation/widgets/home/multi_selection_header_component.dart';

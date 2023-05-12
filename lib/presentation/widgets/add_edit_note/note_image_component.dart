@@ -30,7 +30,7 @@ class NoteImageComponent extends StatelessWidget {
                   : null,
           backgroundImage: addNoteVM.noteImage == null &&
                   addNoteVM.visualNoteModel?.image == null
-              ? AssetImage(AppImages.placeHolderImage)
+              ? const AssetImage(AppImages.placeHolderImage)
               : null,
         ),
         Padding(

@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:get/get.dart';
 import 'package:notes_mvvm/config/router/navigation_service.dart';
 import 'package:notes_mvvm/core/localization/app_localization.dart';
 import 'package:notes_mvvm/core/services/date_parser.dart';
@@ -14,7 +13,6 @@ import 'package:notes_mvvm/data/datasources/db/database_helpers.dart';
 import 'package:notes_mvvm/domain/models/visual_note_model.dart';
 import 'package:notes_mvvm/presentation/viewmodels/home/home_viewmodel.dart';
 import 'package:notes_mvvm/presentation/widgets/snack_bar.dart';
-import 'package:sqflite/sqflite.dart';
 
 final addNoteViewModel = ChangeNotifierProvider.family
     .autoDispose<AddNoteViewModel, VisualNoteModel?>(
@@ -68,18 +66,18 @@ class AddNoteViewModel extends ChangeNotifier {
   pickNoteDate({
     required BuildContext context,
   }) async {
-    final _selectedDate =
+    final selectedDate =
         await DatePicker.instance.selectDate(context, initialDate: noteDate);
-    if (_selectedDate != null) {
-      final _selectedTime =
+    if (selectedDate != null) {
+      final selectedTime =
           await DatePicker.instance.selectTime(context, initialDate: noteDate);
-      if (_selectedTime != null) {
+      if (selectedTime != null) {
         noteDate = DateTime(
-          _selectedDate.year,
-          _selectedDate.month,
-          _selectedDate.day,
-          _selectedTime.hour,
-          _selectedTime.minute,
+          selectedDate.year,
+          selectedDate.month,
+          selectedDate.day,
+          selectedTime.hour,
+          selectedTime.minute,
         );
         notifyListeners();
       }
@@ -101,7 +99,7 @@ class AddNoteViewModel extends ChangeNotifier {
   }
 
   bool validateUniqueID() {
-    bool _isUniqueID = true;
+    bool isUniqueID = true;
     ref.read(homeViewModel).notesList.forEach((note) {
       if (note.noteId == noteIdController.text &&
           note.noteId != visualNoteModel?.noteId) {
@@ -110,14 +108,14 @@ class AddNoteViewModel extends ChangeNotifier {
           title: tr('idAlreadyExist'),
           description: tr('pleaseAddDifferentNoteID'),
         );
-        _isUniqueID = false;
+        isUniqueID = false;
       }
     });
-    return _isUniqueID;
+    return isUniqueID;
   }
 
   bool validateNoteInputs() {
-    bool _validate = false;
+    bool validate = false;
     if (noteImage == null && visualNoteModel == null) {
       CustomSnackBar.showCommonRawSnackBar(
         NavigationService.context,
@@ -137,28 +135,27 @@ class AddNoteViewModel extends ChangeNotifier {
         description: tr('pleaseSelectNoteStatus'),
       );
     } else {
-      _validate = true;
+      validate = true;
     }
-    return _validate;
+    return validate;
   }
 
   Future saveNote() async {
     isLoading = true;
     notifyListeners();
     try {
-      final _imagePath = await saveImageToLocalStorage();
+      final imagePath = await saveImageToLocalStorage();
       await database.addNotes(
         visualNoteModel: VisualNoteModel(
           noteId: noteIdController.text,
           date: DateParser.instance.convertDateToUTCEpoch(noteDate!),
           title: noteTitleController.text,
           description: noteDescriptionController.text,
-          image: _imagePath!,
+          image: imagePath!,
           status: noteStatus!,
         ),
       );
     } catch (e) {
-      print(e.toString());
       AppDialogs.showDefaultErrorDialog();
     }
     isLoading = false;
@@ -168,17 +165,17 @@ class AddNoteViewModel extends ChangeNotifier {
   }
 
   Future<String?> saveImageToLocalStorage() async {
-    final _storedImage = await ImageSelector.instance.saveImageLocally(
+    final storedImage = await ImageSelector.instance.saveImageLocally(
         imageFile: noteImage ?? File(visualNoteModel!.image),
         fileName: noteIdController.text);
-    return _storedImage;
+    return storedImage;
   }
 
   Future updateNote() async {
     isLoading = true;
     notifyListeners();
     try {
-      final _imagePath = noteImage != null || isIdUpdated()
+      final imagePath = noteImage != null || isIdUpdated()
           ? await saveImageToLocalStorage()
           : visualNoteModel!.image;
       await database.updateNotes(
@@ -188,7 +185,7 @@ class AddNoteViewModel extends ChangeNotifier {
             date: DateParser.instance.convertDateToUTCEpoch(noteDate!),
             title: noteTitleController.text,
             description: noteDescriptionController.text,
-            image: _imagePath!,
+            image: imagePath!,
             status: noteStatus!,
           ));
       if (isIdUpdated()) {
@@ -197,7 +194,6 @@ class AddNoteViewModel extends ChangeNotifier {
         ImageSelector.instance.clearImageCache();
       }
     } catch (e) {
-      print(e.toString());
       AppDialogs.showDefaultErrorDialog();
     }
     isLoading = false;

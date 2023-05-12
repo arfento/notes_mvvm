@@ -21,19 +21,19 @@ class ImageSelector {
   }
 
   getAppDocDir() async {
-    final _appDocDir = await getApplicationDocumentsDirectory();
-    return _appDocDir.path;
+    final appDocDir = await getApplicationDocumentsDirectory();
+    return appDocDir.path;
   }
 
   Future<File?>? pickImage({required bool fromCamera}) async {
     try {
-      final _pickedFile = await ImagePicker().pickImage(
+      final pickedFile = await ImagePicker().pickImage(
         source: fromCamera ? ImageSource.camera : ImageSource.gallery,
         maxHeight: Sizes.pickedImageMaxSize,
         maxWidth: Sizes.pickedImageMaxSize,
       );
-      if (_pickedFile != null) {
-        return File(_pickedFile.path);
+      if (pickedFile != null) {
+        return File(pickedFile.path);
       } else {
         return null;
       }
@@ -49,10 +49,10 @@ class ImageSelector {
     String? fileName,
   }) async {
     try {
-      final _appDocDir = await appDocDir;
+      final appDir = await appDocDir;
       fileName == null ? basename(imageFile.path) : fileName += '.jpg';
-      final _savedImage = await imageFile.copy('$_appDocDir/$fileName');
-      return _savedImage.path;
+      final savedImage = await imageFile.copy('$appDir/$fileName');
+      return savedImage.path;
     } catch (e) {
       debugPrint(e.toString());
       AppDialogs.showDefaultErrorDialog();

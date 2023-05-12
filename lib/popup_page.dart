@@ -74,10 +74,10 @@ class PopUpPage extends StatelessWidget {
           appBar: appBarSkippable
               ? CustomAppBar.skippable(
                   context,
-                  children: appbarItems,
                   backButtonColor: backButtonColor,
                   height: appbarHeight,
                   skipBehaviour: skipBehaviour!,
+                  children: appbarItems,
                 )
               : appBarWithMenu
                   ? CustomAppBar.withMenu(

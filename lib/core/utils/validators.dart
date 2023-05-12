@@ -13,6 +13,8 @@ class Validators {
       return tr("pleaseEnterOnlyNumericValues");
     } else if (value.toString().length > 30) {
       return tr("idMustBeAtMost30Numbers");
+    } else {
+      return null;
     }
   }
 
@@ -21,12 +23,16 @@ class Validators {
       return tr("ThisFieldIsEmpty");
     } else if (value.toString().length > 30) {
       return tr("titleMustBeAtMost30Letters");
+    } else {
+      return null;
     }
   }
 
   String? validateDescription(String? value) {
     if (value!.isEmpty) {
       return tr("ThisFieldIsEmpty");
+    } else {
+      return null;
     }
   }
 }

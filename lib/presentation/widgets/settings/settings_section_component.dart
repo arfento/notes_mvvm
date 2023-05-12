@@ -43,7 +43,7 @@ class SettingsSectionComponent extends StatelessWidget {
           vertical: Sizes.vPaddingTiny,
         ),
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         children: [
           ListTile(
             horizontalTitleGap: 0,

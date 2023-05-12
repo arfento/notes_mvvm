@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notes_mvvm/core/utils/constants.dart';
-import 'package:notes_mvvm/core/utils/enums.dart';
 import 'package:notes_mvvm/domain/models/visual_note_model.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
